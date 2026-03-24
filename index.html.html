@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAST MEDIA | 皡翰娛樂 — Taiwan MMORPG Influencer & Guild Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Bebas+Neue&family=Outfit:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #07080C;
+    --bg-base: #0D0F16;
+    --bg-card: #12151E;
+    --bg-card2: #161922;
+    --border: rgba(255,255,255,0.07);
+    --border-accent: rgba(140,165,220,0.25);
+    --accent-blue: #8CA5DC;
+    --accent-gold: #C8A86E;
+    --accent-glow: rgba(140,165,220,0.15);
+    --text-primary: #E8EAF0;
+    --text-secondary: #8A8FA8;
+    --text-muted: #4A4F66;
+    --font-display: 'Bebas Neue', 'Outfit', sans-serif;
+    --font-body-ko: 'Noto Sans KR', sans-serif;
+    --font-body-tc: 'Noto Sans TC', sans-serif;
+    --font-ui: 'Outfit', sans-serif;
+    --radius: 4px;
+    --section-gap: 120px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body-ko);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body.lang-tc {
+    font-family: var(--font-body-tc);
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .font-display {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 68px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(7,8,12,0.85);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    text-decoration: none;
+  }
+
+  .nav-logo-en {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .nav-logo-cn {
+    font-family: var(--font-body-tc);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lang-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .lang-btn {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background: var(--accent-blue);
+    color: var(--bg-deep);
+  }
+
+  .nav-cta {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: var(--accent-gold);
+    border: none;
+    padding: 9px 22px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  #home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px;
+    overflow: hidden;
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(140,165,220,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(140,165,220,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 80%);
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+
+  .hero-orb-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(140,165,220,0.12) 0%, transparent 70%);
+    top: -150px; right: -100px;
+  }
+
+  .hero-orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,168,110,0.08) 0%, transparent 70%);
+    bottom: 50px; left: 10%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-accent);
+    border-radius: 2px;
+    padding: 7px 16px;
+    margin-bottom: 40px;
+    background: rgba(140,165,220,0.05);
+  }
+
+  .hero-tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-tag-text {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+  }
+
+  .hero-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(46px, 7vw, 92px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin-bottom: 28px;
+  }
+
+  .hero-headline .accent-gold {
+    color: var(--accent-gold);
+  }
+
+  .hero-headline .accent-blue {
+    color: var(--accent-blue);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: var(--accent-gold);
+    border: none;
+    padding: 14px 32px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #D9BC82;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 13px 28px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 60px;
+    right: 48px;
+    display: flex;
+    gap: 48px;
+    z-index: 2;
+  }
+
+  .hero-stat {
+    text-align: right;
+  }
+
+  .hero-stat-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 60px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--text-muted);
+  }
+
+  .scroll-text {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: var(--section-gap) 48px;
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 64px;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.1;
+    margin-top: 16px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-top: 20px;
+    line-height: 1.8;
+  }
+
+  /* ── DIVIDER LINE ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg-base); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-left .big-statement {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .about-left .big-statement span {
+    color: var(--accent-blue);
+  }
+
+  .about-pillars {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pillar {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    transition: border-color 0.2s;
+  }
+
+  .pillar:hover {
+    border-color: var(--border-accent);
+  }
+
+  .pillar-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    opacity: 0.6;
+    min-width: 28px;
+  }
+
+  .pillar-content h4 {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .pillar-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .about-right {
+    padding-top: 8px;
+  }
+
+  .about-right p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .about-highlight-box {
+    border-left: 2px solid var(--accent-gold);
+    padding: 20px 24px;
+    background: rgba(200,168,110,0.05);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 32px 0;
+  }
+
+  .about-highlight-box p {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--bg-deep); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--bg-base);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .service-card:hover {
+    background: var(--bg-card);
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .service-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent-blue);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .service-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .service-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    border: 1px solid var(--border-accent);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── MARKET INSIGHT ── */
+  #insight {
+    background: var(--bg-base);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #insight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+    opacity: 0.3;
+  }
+
+  .insight-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 72px;
+    align-items: center;
+  }
+
+  .insight-intro-text h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-top: 16px;
+  }
+
+  .insight-intro-text p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .insight-callout {
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    padding: 36px;
+    background: linear-gradient(135deg, rgba(140,165,220,0.05), rgba(200,168,110,0.03));
+  }
+
+  .insight-callout-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .insight-callout-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .insight-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .insight-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .insight-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+
+  .insight-card-index {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+
+  .insight-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .insight-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .insight-card-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-blue), transparent);
+    width: 0;
+    transition: width 0.4s ease;
+  }
+
+  .insight-card:hover .insight-card-bar {
+    width: 100%;
+  }
+
+  /* ── NETWORK ── */
+  #network { background: var(--bg-deep); }
+
+  .network-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .network-left p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-top: 20px;
+  }
+
+  .network-metric {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric-row:last-child {
+    border-bottom: none;
+  }
+
+  .metric-label {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .metric-val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-gold);
+  }
+
+  .network-types {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .network-type-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 24px;
+    background: var(--bg-card);
+    transition: all 0.2s;
+  }
+
+  .network-type-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-card2);
+  }
+
+  .network-type-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .network-type-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .network-type-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── PARTNERS ── */
+  #partners { background: var(--bg-base); }
+
+  .partners-trust {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .partner-cell {
+    flex: 0 0 calc(25% - 2px);
+    height: 90px;
+    background: var(--bg-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .partner-cell:hover {
+    background: var(--bg-card);
+  }
+
+  .partner-logo-placeholder {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  .partners-note {
+    text-align: center;
+    margin-top: 28px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg-deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,168,110,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-left h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-top: 16px;
+  }
+
+  .contact-left h2 .line-gold {
+    color: var(--accent-gold);
+  }
+
+  .contact-left p {
+    margin-top: 24px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .contact-info {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-info-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .contact-info-icon {
+    width: 34px; height: 34px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .contact-info-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .contact-info-text a {
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+
+  .contact-form {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-family: var(--font-body-ko);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  body.lang-tc .form-group input,
+  body.lang-tc .form-group select,
+  body.lang-tc .form-group textarea {
+    font-family: var(--font-body-tc);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent-blue);
+  }
+
+  .form-group select option {
+    background: var(--bg-card);
+  }
+
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent-gold);
+    color: var(--bg-deep);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover {
+    background: #D9BC82;
+    transform: translateY(-1px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-deep);
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .footer-copy {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text-secondary); }
+
+  /* ── LANGUAGE SHOW/HIDE ── */
+  [data-lang="ko"], [data-lang="tc"] {
+    display: block;
+  }
+
+  body.lang-tc [data-lang="ko"] { display: none !important; }
+  body.lang-tc [data-lang="tc"] { display: block !important; }
+  body:not(.lang-tc) [data-lang="tc"] { display: none !important; }
+  body:not(.lang-tc) [data-lang="ko"] { display: block !important; }
+
+  span[data-lang="ko"], span[data-lang="tc"] { display: inline !important; }
+  body.lang-tc span[data-lang="ko"] { display: none !important; }
+  body:not(.lang-tc) span[data-lang="tc"] { display: none !important; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 28px; }
+    .nav-links { display: none; }
+    section { padding: 80px 28px; }
+    #home { padding: 0 28px; }
+    .hero-stats { right: 28px; bottom: 40px; gap: 28px; }
+    .about-grid, .insight-intro, .network-layout, .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .insight-cards { grid-template-columns: 1fr 1fr; }
+    footer { padding: 28px; }
+  }
+
+  @media (max-width: 640px) {
+    :root { --section-gap: 72px; }
+    .hero-headline { font-size: 38px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .insight-cards { grid-template-columns: 1fr; }
+    .network-types { grid-template-columns: 1fr; }
+    .partner-cell { flex: 0 0 calc(50% - 2px); }
+    .hero-stats { display: none; }
+    .nav-logo-cn { display: none; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .contact-form { padding: 24px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVIGATION
+══════════════════════════════════ -->
+<nav>
+  <a class="nav-logo" href="#home">
+    <span class="nav-logo-en">VAST MEDIA</span>
+    <span class="nav-logo-cn">皡翰娛樂</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about" data-lang="ko">회사 소개</a><a href="#about" data-lang="tc">關於我們</a></li>
+    <li><a href="#services" data-lang="ko">서비스</a><a href="#services" data-lang="tc">服務</a></li>
+    <li><a href="#insight" data-lang="ko">시장 인사이트</a><a href="#insight" data-lang="tc">市場洞察</a></li>
+    <li><a href="#network" data-lang="ko">네트워크</a><a href="#network" data-lang="tc">網絡資源</a></li>
+    <li><a href="#partners" data-lang="ko">파트너</a><a href="#partners" data-lang="tc">合作夥伴</a></li>
+    <li><a href="#contact" data-lang="ko">문의</a><a href="#contact" data-lang="tc">聯絡我們</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-ko" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" id="btn-tc" onclick="setLang('tc')">TC</button>
+    </div>
+    <a href="#contact" class="nav-cta">
+      <span data-lang="ko">파트너십 문의</span>
+      <span data-lang="tc">夥伴合作諮詢</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="home">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span class="hero-tag-text" data-lang="ko">Taiwan MMORPG Influencer & Guild Network</span>
+      <span class="hero-tag-text" data-lang="tc">台灣 MMORPG 影響者與公會網絡</span>
+    </div>
+
+    <h1 class="hero-headline" data-lang="ko">
+      대만 MMORPG 시장의<br>
+      <span class="accent-gold">전략적 파트너.</span>
+    </h1>
+    <h1 class="hero-headline" data-lang="tc">
+      台灣 MMORPG 市場的<br>
+      <span class="accent-gold">策略夥伴。</span>
+    </h1>
+
+    <p class="hero-sub" data-lang="ko">
+      KOL 단순 섭외를 넘어, 대만 MMORPG 커뮤니티 생태계를 설계합니다.<br>
+      길드 오퍼레이션, 장기 스트리밍 전략, 플레이어 인사이트까지 —<br>
+      한국 게임사의 대만 시장 진입을 위한 현지 파트너.
+    </p>
+    <p class="hero-sub" data-lang="tc">
+      不只是找 KOL，而是建構台灣 MMORPG 社群生態。<br>
+      公會經營、長期直播策略、玩家洞察全面整合 —<br>
+      協助海外遊戲公司深入台灣市場的在地夥伴。
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        <span data-lang="ko">파트너십 문의하기</span>
+        <span data-lang="tc">立即洽詢合作</span>
+      </a>
+      <a href="#services" class="btn-secondary">
+        <span data-lang="ko">서비스 살펴보기</span>
+        <span data-lang="tc">了解我們的服務</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">200+</div>
+      <div class="hero-stat-label" data-lang="ko">MMORPG KOL 네트워크</div>
+      <div class="hero-stat-label" data-lang="tc">MMORPG KOL 網絡</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">50+</div>
+      <div class="hero-stat-label" data-lang="ko">공식 협력 길드</div>
+      <div class="hero-stat-label" data-lang="tc">合作公會組織</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">8+</div>
+      <div class="hero-stat-label" data-lang="ko">한국 게임 런치 지원</div>
+      <div class="hero-stat-label" data-lang="tc">韓國遊戲上線支援</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">SCROLL</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <p class="label" data-lang="ko">회사 소개</p>
+        <p class="label" data-lang="tc">關於我們</p>
+
+        <div class="big-statement" data-lang="ko" style="margin-top:16px;">
+          우리는 대만에서 가장 깊이<br>
+          <span>MMORPG 생태계</span>를<br>
+          이해하는 팀입니다.
+        </div>
+        <div class="big-statement" data-lang="tc" style="margin-top:16px;">
+          我們是台灣最深度理解<br>
+          <span>MMORPG 生態系</span>的<br>
+          專業團隊。
+        </div>
+
+        <div class="about-pillars" style="margin-top:36px;">
+          <div class="pillar">
+            <span class="pillar-num">01</span>
+            <div class="pillar-content">
+              <h4 data-lang="ko">KOL Influencer 매니지먼트</h4>
+              <h4 data-lang="tc">KOL 影響者管理</h4>
+              <p data-lang="ko">단순 노출이 아닌, 커뮤니티를 움직이는 KOL과의 장기 파트너십 구축</p>
+              <p data-lang="tc">不只是曝光，而是建立能帶動社群的 KOL 長期夥伴關係</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">02</span>
+            <div class="pillar-content">
+              <h4 data-lang="ko">길드 커뮤니티 운영</h4>
+              <h4 data-lang="tc">公會社群經營</h4>
+              <p data-lang="ko">대만 MMORPG 생태계의 핵심인 길드 네트워크를 설계하고 관리</p>
+              <p data-lang="tc">設計並管理台灣 MMORPG 生態核心的公會網絡</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">03</span>
+            <div class="pillar-content">
+              <h4 data-lang="ko">대만 시장 인사이트 제공</h4>
+              <h4 data-lang="tc">台灣市場洞察提供</h4>
+              <p data-lang="ko">플레이어 행동, 커뮤니티 반응, 경쟁 구도 분석을 통한 전략 수립 지원</p>
+              <p data-lang="tc">透過玩家行為、社群反應、競爭態勢分析，協助制定市場進入策略</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right reveal reveal-delay-2">
+        <p data-lang="ko">
+          VAST MEDIA는 대만 게임 시장, 특히 MMORPG 장르에 특화된 Influencer Marketing & Community Operation 전문 기업입니다.
+        </p>
+        <p data-lang="tc">
+          VAST MEDIA 皡翰娛樂是一家專注於台灣遊戲市場的 Influencer Marketing 與 Community Operation 公司，特別深耕 MMORPG 類型遊戲。
+        </p>
+
+        <p data-lang="ko">
+          단순히 KOL을 섭외하는 것이 아니라, MMORPG 플레이어 생태계 전체를 설계합니다. 실황주, 길드 리더, 커뮤니티 관리자와의 긴밀한 네트워크를 바탕으로, 한국 게임사가 대만에서 실질적인 플레이어 베이스를 구축할 수 있도록 지원합니다.
+        </p>
+        <p data-lang="tc">
+          我們不只是接洽 KOL，而是整體設計 MMORPG 玩家生態系統。基於與直播主、公會領袖、社群管理者的深度網絡，協助海外遊戲公司在台灣建立實質的玩家基礎。
+        </p>
+
+        <div class="about-highlight-box">
+          <p data-lang="ko">
+            "대만 MMORPG 시장에서의 성공은 단기 노출이 아닌, 커뮤니티의 신뢰를 얻는 것에서 시작됩니다. 우리는 그 길을 설계합니다."
+          </p>
+          <p data-lang="tc">
+            「台灣 MMORPG 市場的成功，始於贏得社群的信任，而非短期曝光。我們來設計這條路。」
+          </p>
+        </div>
+
+        <p data-lang="ko" style="margin-top:0;">
+          한국 게임사와의 협업 경험을 바탕으로, 언어 장벽 없이 원활한 커뮤니케이션과 현지화 전략 수립이 가능합니다.
+        </p>
+        <p data-lang="tc" style="margin-top:0;">
+          憑藉與韓國遊戲公司的合作經驗，我們能夠無障礙溝通，並協助制定完整的在地化策略。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <p class="label" data-lang="ko">서비스</p>
+      <p class="label" data-lang="tc">服務項目</p>
+      <h2 class="section-title" data-lang="ko">대만 시장 진입을 위한<br>통합 전략 솔루션</h2>
+      <h2 class="section-title" data-lang="tc">進入台灣市場的<br>整合策略解決方案</h2>
+      <p class="section-desc" data-lang="ko">
+        론칭 전 전략 설계부터, 론칭 후 커뮤니티 유지까지. 대만 MMORPG 시장에서 필요한 모든 것을 제공합니다.
+      </p>
+      <p class="section-desc" data-lang="tc">
+        從上線前的策略規劃，到上線後的社群維護。提供台灣 MMORPG 市場所需的一切。
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 data-lang="ko">MMORPG KOL 매칭 & 운영</h3>
+        <h3 data-lang="tc">MMORPG KOL 媒合與運營</h3>
+        <p data-lang="ko">대만 MMORPG 특화 KOL 및 스트리머 데이터베이스를 기반으로, 게임 장르·타겟·목표에 맞는 최적의 인플루언서 매칭과 장기 협력 운영을 제공합니다.</p>
+        <p data-lang="tc">基於台灣 MMORPG 專業 KOL 與直播主資料庫，依遊戲類型、目標族群進行最適媒合，並提供長期合作運營服務。</p>
+        <span class="service-tag">Influencer Strategy</span>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 data-lang="ko">길드 커뮤니티 구축 & 운영</h3>
+        <h3 data-lang="tc">公會社群建立與經營</h3>
+        <p data-lang="ko">신규 게임 론칭에 맞춰 대만 내 공식 길드 네트워크를 구성하고, 플레이어 간 경쟁 구도와 커뮤니티 결속력을 관리합니다. 길드는 단순 조직이 아닌 강력한 마케팅 채널입니다.</p>
+        <p data-lang="tc">配合新遊戲上線組建台灣官方公會網絡，管理玩家競爭氛圍與社群凝聚力。公會不只是組織，更是強大的行銷渠道。</p>
+        <span class="service-tag">Guild Network</span>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 data-lang="ko">장기 스트리밍 파트너십</h3>
+        <h3 data-lang="tc">長期直播夥伴計畫</h3>
+        <p data-lang="ko">단발성 광고 계약이 아닌, 게임 서비스 주기와 연동된 장기 스트리밍 파트너십을 기획합니다. 콘텐츠 지속성과 플레이어 유입 동시에 달성.</p>
+        <p data-lang="tc">非一次性廣告合約，而是與遊戲服務週期連動的長期直播夥伴計畫。同步實現內容持續性與玩家導入。</p>
+        <span class="service-tag">Long-term Partnership</span>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 data-lang="ko">대만 시장 진입 전략 컨설팅</h3>
+        <h3 data-lang="tc">台灣市場進入策略諮詢</h3>
+        <p data-lang="ko">한국 게임사를 위한 대만 시장 분석, 플레이어 반응 예측, 경쟁 타이틀 포지셔닝, 론칭 타임라인 설계까지 전략 컨설팅을 제공합니다.</p>
+        <p data-lang="tc">為韓國遊戲公司提供台灣市場分析、玩家反應預測、競爭產品定位、上線時程規劃等全方位策略諮詢。</p>
+        <span class="service-tag">Market Entry</span>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 data-lang="ko">플레이어 피드백 수집 & 분석</h3>
+        <h3 data-lang="tc">玩家回饋蒐集與分析</h3>
+        <p data-lang="ko">실황주, 공식 길드, 커뮤니티 채널을 통한 실시간 플레이어 피드백 수집 및 정리. 서비스 개선과 패치 방향 결정에 활용 가능한 인사이트 제공.</p>
+        <p data-lang="tc">透過直播主、官方公會、社群頻道即時蒐集玩家回饋並整理分析，提供可用於服務優化與改版方向的洞察。</p>
+        <span class="service-tag">Player Intelligence</span>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 data-lang="ko">이벤트 & 대회 기획 운영</h3>
+        <h3 data-lang="tc">活動賽事企劃執行</h3>
+        <p data-lang="ko">커뮤니티 활성화를 위한 길드 대전, 랭킹 이벤트, 온라인 대회를 기획하고 운영합니다. 플레이어 경쟁 심리를 활용한 체류 기간 극대화 전략.</p>
+        <p data-lang="tc">企劃並執行公會對戰、排行榜活動、線上賽事，透過玩家競爭心理最大化遊戲黏著度。</p>
+        <span class="service-tag">Community Events</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     MARKET INSIGHT
+══════════════════════════════════ -->
+<section id="insight">
+  <div class="section-inner">
+    <div class="insight-intro">
+      <div class="insight-intro-text reveal">
+        <p class="label" data-lang="ko">대만 MMORPG 시장 인사이트</p>
+        <p class="label" data-lang="tc">台灣 MMORPG 市場洞察</p>
+        <h2 data-lang="ko">대만 플레이어를<br>움직이는 것은<br>광고가 아닙니다.</h2>
+        <h2 data-lang="tc">驅動台灣玩家的<br>從來不是廣告，<br>而是社群。</h2>
+        <p data-lang="ko">대만 MMORPG 시장은 한국과 다릅니다. 공략, 길드, 스트리밍 문화가 유기적으로 연결된 이 시장에서 성공하려면 그 작동 방식을 정확히 이해해야 합니다.</p>
+        <p data-lang="tc">台灣 MMORPG 市場與韓國截然不同。攻略社群、公會文化、直播生態有機連結。要在此市場成功，必須精準理解其運作邏輯。</p>
+      </div>
+
+      <div class="insight-callout reveal reveal-delay-2">
+        <div style="margin-bottom:28px;">
+          <div class="insight-callout-num">74%</div>
+          <div class="insight-callout-desc" data-lang="ko">대만 MMORPG 플레이어의 게임 참여 결정에<br>커뮤니티 및 KOL 콘텐츠가 영향을 미침</div>
+          <div class="insight-callout-desc" data-lang="tc">台灣 MMORPG 玩家的遊戲參與決策<br>受社群及 KOL 內容顯著影響</div>
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:24px;">
+          <div class="insight-callout-num" style="font-size:40px;">3.2x</div>
+          <div class="insight-callout-desc" data-lang="ko">길드 기반 플레이어의 평균 게임 체류 기간이<br>일반 플레이어 대비 3.2배 높음</div>
+          <div class="insight-callout-desc" data-lang="tc">公會型玩家的平均遊戲留存期間<br>為一般玩家的 3.2 倍</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-cards">
+      <div class="insight-card reveal">
+        <div class="insight-card-index">Insight 01</div>
+        <h4 data-lang="ko">단기 노출 ≠ 장기 유저</h4>
+        <h4 data-lang="tc">短期曝光 ≠ 長期留存</h4>
+        <p data-lang="ko">대만 플레이어는 다양한 MMORPG에 관심을 가지지만, 실제로 깊이 파고드는 타이틀은 제한적입니다. 론칭 버스트 이후 커뮤니티 결속이 없으면 급격한 이탈이 발생합니다.</p>
+        <p data-lang="tc">台灣玩家同時關注多款 MMORPG，但真正深度投入的遊戲有限。上線熱潮後若缺乏社群結構，將面臨快速流失。</p>
+        <div class="insight-card-bar"></div>
+      </div>
+
+      <div class="insight-card reveal reveal-delay-1">
+        <div class="insight-card-index">Insight 02</div>
+        <h4 data-lang="ko">길드 = 플레이어 유지 엔진</h4>
+        <h4 data-lang="tc">公會 = 玩家留存引擎</h4>
+        <p data-lang="ko">대만 MMORPG에서 길드는 단순한 그룹이 아닙니다. 길드 소속 여부가 게임 지속 여부를 결정합니다. 길드 운영 전략 없는 론칭은 절반의 성공입니다.</p>
+        <p data-lang="tc">在台灣 MMORPG 中，公會不只是群體。是否加入公會直接決定玩家是否繼續遊玩。沒有公會運營策略的上線，等同於只完成了一半。</p>
+        <div class="insight-card-bar"></div>
+      </div>
+
+      <div class="insight-card reveal reveal-delay-2">
+        <div class="insight-card-index">Insight 03</div>
+        <h4 data-lang="ko">KOL의 진짜 가치는 공동체 형성</h4>
+        <h4 data-lang="tc">KOL 的真正價值在於社群凝聚</h4>
+        <p data-lang="ko">대만 MMORPG KOL은 단순 콘텐츠 제작자가 아닙니다. 이들은 커뮤니티 허브이며, 팔로워의 게임 결정에 직접적이고 강력한 영향을 미칩니다.</p>
+        <p data-lang="tc">台灣 MMORPG KOL 不只是內容創作者，他們是社群核心，對追隨者的遊戲選擇有直接且強大的影響力。</p>
+        <div class="insight-card-bar"></div>
+      </div>
+
+      <div class="insight-card reveal reveal-delay-3">
+        <div class="insight-card-index">Insight 04</div>
+        <h4 data-lang="ko">경쟁 구도가 콘텐츠를 만든다</h4>
+        <h4 data-lang="tc">競爭氛圍創造內容動能</h4>
+        <p data-lang="ko">서버 내 길드 경쟁, 랭킹 문화, 공방 콘텐츠는 자발적 콘텐츠 생산과 바이럴을 만들어냅니다. 이 경쟁 생태계를 잘 설계하면 마케팅 비용 없이도 커뮤니티가 성장합니다.</p>
+        <p data-lang="tc">伺服器內公會競爭、排名文化、攻防內容能自然產生自發性內容與口碑擴散。良好設計的競爭生態，讓社群在無需大量行銷預算下自然成長。</p>
+        <div class="insight-card-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     NETWORK
+══════════════════════════════════ -->
+<section id="network">
+  <div class="section-inner">
+    <div class="network-layout">
+      <div class="network-left reveal">
+        <p class="label" data-lang="ko">인플루언서 & 길드 네트워크</p>
+        <p class="label" data-lang="tc">影響者與公會網絡</p>
+        <h2 class="section-title" style="font-size: clamp(28px,3.5vw,42px);" data-lang="ko">단순 명단이 아닌,<br>실전 네트워크</h2>
+        <h2 class="section-title" style="font-size: clamp(28px,3.5vw,42px);" data-lang="tc">不只是名單，<br>而是實戰網絡</h2>
+        <p data-lang="ko">VAST MEDIA의 네트워크는 단순한 연락처 목록이 아닙니다. 각 KOL, 공회장, 스트리머와 긴밀한 신뢰 관계를 바탕으로, 실제 마케팅 목표를 달성할 수 있는 운영 구조를 갖추고 있습니다.</p>
+        <p data-lang="tc">VAST MEDIA 的網絡不只是聯絡人名單。與每位 KOL、公會長、直播主建立的深度信任關係，構成能實際達成行銷目標的運營架構。</p>
+
+        <div class="network-metric">
+          <div class="metric-row">
+            <span class="metric-label" data-lang="ko">MMORPG 특화 KOL</span>
+            <span class="metric-label" data-lang="tc">MMORPG 專門 KOL</span>
+            <span class="metric-val">200+</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label" data-lang="ko">협력 공식 길드</span>
+            <span class="metric-label" data-lang="tc">合作官方公會</span>
+            <span class="metric-val">50+</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label" data-lang="ko">커뮤니티 총 도달</span>
+            <span class="metric-label" data-lang="tc">社群總觸及</span>
+            <span class="metric-val">5M+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="network-types reveal reveal-delay-2">
+        <div class="network-type-card">
+          <div class="network-type-icon">🎮</div>
+          <h4 data-lang="ko">MMORPG 전문 스트리머</h4>
+          <h4 data-lang="tc">MMORPG 專業直播主</h4>
+          <p data-lang="ko">대만 주요 게임 플랫폼에서 활동하는 MMORPG 특화 스트리머. 고정 시청자와 강력한 커뮤니티 영향력 보유.</p>
+          <p data-lang="tc">活躍於台灣主流直播平台的 MMORPG 專業直播主，擁有固定觀眾群與強大的社群影響力。</p>
+        </div>
+
+        <div class="network-type-card">
+          <div class="network-type-icon">⚔️</div>
+          <h4 data-lang="ko">공회장 & 길드 오피셜</h4>
+          <h4 data-lang="tc">公會長與公會官員</h4>
+          <p data-lang="ko">수십~수백 명의 멤버를 이끄는 공인된 길드 리더. 신게임 진입과 멤버 이동에 직접적인 영향력 보유.</p>
+          <p data-lang="tc">帶領數十至數百名成員的公會領袖，對新遊戲進入意願與成員動向具有直接影響力。</p>
+        </div>
+
+        <div class="network-type-card">
+          <div class="network-type-icon">📣</div>
+          <h4 data-lang="ko">커뮤니티 KOL & 공략 크리에이터</h4>
+          <h4 data-lang="tc">社群 KOL 與攻略創作者</h4>
+          <p data-lang="ko">게임 공략, 정보 전달, 티어표 분석 등 커뮤니티에서 신뢰받는 정보형 인플루언서.</p>
+          <p data-lang="tc">擅長遊戲攻略、情報傳遞、強度排行分析，在社群中享有高度信任的資訊型影響者。</p>
+        </div>
+
+        <div class="network-type-card">
+          <div class="network-type-icon">🌐</div>
+          <h4 data-lang="ko">장기 앰배서더 네트워크</h4>
+          <h4 data-lang="tc">長期品牌大使網絡</h4>
+          <p data-lang="ko">게임 론칭부터 장기 서비스까지 함께하는 공식 브랜드 앰배서더. 지속적인 커뮤니티 활성화 역할 수행.</p>
+          <p data-lang="tc">從遊戲上線到長期服務全程同行的官方品牌大使，持續承擔社群活化的核心角色。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     PARTNERS
+══════════════════════════════════ -->
+<section id="partners">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center; margin-bottom:48px;">
+      <p class="label" data-lang="ko">파트너사</p>
+      <p class="label" data-lang="tc">合作夥伴</p>
+      <h2 class="section-title" data-lang="ko" style="text-align:center;">업계가 신뢰하는 파트너</h2>
+      <h2 class="section-title" data-lang="tc" style="text-align:center;">業界信賴的合作夥伴</h2>
+    </div>
+
+    <div class="partners-grid reveal">
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER A</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER B</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER C</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER D</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER E</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER F</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER G</span></div>
+      <div class="partner-cell"><span class="partner-logo-placeholder">PARTNER H</span></div>
+    </div>
+
+    <p class="partners-note reveal" data-lang="ko">파트너사의 요청에 따라 상세 협력 내용은 공개하지 않습니다. 문의 시 별도 자료를 제공해 드립니다.</p>
+    <p class="partners-note reveal" data-lang="tc">依合作夥伴要求，詳細合作內容不對外公開。歡迎來信索取專屬資料。</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-layout">
+      <div class="contact-left reveal">
+        <p class="label" data-lang="ko">파트너십 문의</p>
+        <p class="label" data-lang="tc">夥伴合作洽詢</p>
+        <h2 data-lang="ko">
+          대만 시장,<br>
+          <span class="line-gold">함께 공략하겠습니다.</span>
+        </h2>
+        <h2 data-lang="tc">
+          台灣市場，<br>
+          <span class="line-gold">我們一起攻略。</span>
+        </h2>
+
+        <p data-lang="ko">
+          한국 게임사의 대만 진출, 어떤 단계에 있든 VAST MEDIA가 도움이 될 수 있습니다. 론칭 전략, KOL 네트워크, 커뮤니티 운영 등 구체적인 협력 방안을 논의해 드립니다.
+        </p>
+        <p data-lang="tc">
+          無論您的台灣市場計畫正處於哪個階段，VAST MEDIA 都能協助。上線策略、KOL 網絡、社群運營，歡迎與我們討論具體合作方案。
+        </p>
+
+        <div class="contact-info">
+          <div class="contact-info-row">
+            <div class="contact-info-icon">✉</div>
+            <div class="contact-info-text">
+              <a href="mailto:contact@vastmedia.tw">contact@vastmedia.tw</a>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon">📍</div>
+            <div class="contact-info-text" data-lang="ko">대만 타이베이 | 서울 협력 가능</div>
+            <div class="contact-info-text" data-lang="tc">台灣 台北 | 可支援首爾對接</div>
+          </div>
+          <div class="contact-info-row">
+            <div class="contact-info-icon">💬</div>
+            <div class="contact-info-text" data-lang="ko">한국어 / 繁體中文 / English 지원</div>
+            <div class="contact-info-text" data-lang="tc">支援 한국어 / 繁體中文 / English</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal reveal-delay-2">
+        <p class="label" style="margin-bottom:24px;" data-lang="ko">문의 양식</p>
+        <p class="label" style="margin-bottom:24px;" data-lang="tc">聯絡表單</p>
+
+        <div class="form-group">
+          <label data-lang="ko">회사명</label>
+          <label data-lang="tc">公司名稱</label>
+          <input type="text" placeholder="Company Name">
+        </div>
+
+        <div class="form-group">
+          <label data-lang="ko">담당자 성함</label>
+          <label data-lang="tc">聯絡人姓名</label>
+          <input type="text" placeholder="Your Name">
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@company.com">
+        </div>
+
+        <div class="form-group">
+          <label data-lang="ko">문의 유형</label>
+          <label data-lang="tc">洽詢類型</label>
+          <select>
+            <option value="" data-lang="ko">선택해주세요</option>
+            <option value="" data-lang="tc">請選擇</option>
+            <option data-lang="ko">대만 시장 진입 전략</option>
+            <option data-lang="tc">台灣市場進入策略</option>
+            <option data-lang="ko">KOL 네트워크 협력</option>
+            <option data-lang="tc">KOL 網絡合作</option>
+            <option data-lang="ko">길드 커뮤니티 구축</option>
+            <option data-lang="tc">公會社群建立</option>
+            <option data-lang="ko">장기 파트너십 논의</option>
+            <option data-lang="tc">長期夥伴關係討論</option>
+            <option data-lang="ko">기타</option>
+            <option data-lang="tc">其他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label data-lang="ko">메시지</label>
+          <label data-lang="tc">訊息內容</label>
+          <textarea placeholder=""></textarea>
+        </div>
+
+        <button class="form-submit">
+          <span data-lang="ko">문의 보내기 →</span>
+          <span data-lang="tc">送出洽詢 →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">VAST MEDIA · 皡翰娛樂</div>
+  <p class="footer-copy" data-lang="ko">© 2025 VAST MEDIA 皡翰娛樂. Taiwan MMORPG Influencer & Guild Network.</p>
+  <p class="footer-copy" data-lang="tc">© 2025 皡翰娛樂 VAST MEDIA. 台灣 MMORPG 影響者與公會網絡。</p>
+  <ul class="footer-links">
+    <li><a href="#about" data-lang="ko">회사 소개</a><a href="#about" data-lang="tc">關於我們</a></li>
+    <li><a href="#services" data-lang="ko">서비스</a><a href="#services" data-lang="tc">服務</a></li>
+    <li><a href="#contact" data-lang="ko">문의</a><a href="#contact" data-lang="tc">聯絡</a></li>
+  </ul>
+</footer>
+
+<script>
+  // ── LANG TOGGLE ──
+  function setLang(lang) {
+    const body = document.body;
+    const btnKo = document.getElementById('btn-ko');
+    const btnTc = document.getElementById('btn-tc');
+    if (lang === 'tc') {
+      body.classList.add('lang-tc');
+      btnTc.classList.add('active');
+      btnKo.classList.remove('active');
+      document.documentElement.lang = 'zh-TW';
+    } else {
+      body.classList.remove('lang-tc');
+      btnKo.classList.add('active');
+      btnTc.classList.remove('active');
+      document.documentElement.lang = 'ko';
+    }
+  }
+
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── NAV SCROLL STYLE ──
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(255,255,255,0.07)';
+    }
+  });
+
+  // ── HERO PARALLAX ──
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const orb1 = document.querySelector('.hero-orb-1');
+    const orb2 = document.querySelector('.hero-orb-2');
+    if (orb1) orb1.style.transform = `translateY(${scrollY * 0.15}px)`;
+    if (orb2) orb2.style.transform = `translateY(${scrollY * 0.1}px)`;
+  });
+
+  // ── FORM PLACEHOLDER BY LANG ──
+  function updatePlaceholders() {
+    const isTC = document.body.classList.contains('lang-tc');
+    const textarea = document.querySelector('textarea');
+    if (textarea) {
+      textarea.placeholder = isTC
+        ? '請描述您的遊戲專案與合作需求...'
+        : '게임 프로젝트와 협력 방향을 간략히 설명해 주세요...';
+    }
+  }
+  document.getElementById('btn-ko').addEventListener('click', () => setTimeout(updatePlaceholders, 10));
+  document.getElementById('btn-tc').addEventListener('click', () => setTimeout(updatePlaceholders, 10));
+  updatePlaceholders();
+</script>
+</body>
+</html>
