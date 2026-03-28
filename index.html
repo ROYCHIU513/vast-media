@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAST MEDIA | 皡翰娛樂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080a0f;--bg2:#0c0e14;--bg3:#10131a;--bd:rgba(255,255,255,.06);--bd2:rgba(130,155,200,.18);--blue:#8ca5dc;--gold:#c8a86e;--t1:#e4e6ec;--t2:#8a8fa6;--t3:#474c62;--ui:'Outfit',sans-serif;--gap:100px;--r:3px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Noto Sans KR',sans-serif;font-size:15px;line-height:1.75;overflow-x:hidden}
+body.tc{font-family:'Noto Sans TC',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;border-bottom:1px solid var(--bd);background:rgba(8,10,15,.92);backdrop-filter:blur(16px)}
+.n-logo{text-decoration:none;display:flex;flex-direction:column;gap:1px}
+.n-logo img{height:34px;object-fit:contain;display:none}
+.n-en{font-family:var(--ui);font-weight:700;font-size:16px;letter-spacing:.1em;color:#fff;line-height:1}
+.n-cn{font-family:'Noto Sans TC',sans-serif;font-size:9px;color:var(--t3);letter-spacing:.08em;line-height:1}
+.n-links{display:flex;gap:28px;list-style:none}
+.n-links a{font-family:var(--ui);font-size:12px;color:var(--t2);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+.n-links a:hover{color:var(--t1)}
+.n-right{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;border:1px solid var(--bd);border-radius:2px;overflow:hidden}
+.lang-btn{font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.08em;padding:4px 10px;background:none;border:none;color:var(--t3);cursor:pointer;transition:.2s}
+.lang-btn.on{background:var(--blue);color:var(--bg)}
+.n-cta{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--bg);background:var(--gold);border:none;padding:8px 18px;cursor:pointer;border-radius:var(--r);text-decoration:none;transition:.2s}
+.n-cta:hover{opacity:.85}
+
+/* LAYOUT */
+section{padding:var(--gap) 48px;position:relative}
+.inner{max-width:960px;margin:0 auto}
+.lbl{font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.sec-t{font-family:var(--ui);font-size:clamp(24px,3vw,36px);font-weight:600;color:#fff;line-height:1.2;letter-spacing:-.01em}
+.sec-p{font-size:14px;color:var(--t2);line-height:1.85;margin-top:16px;max-width:600px}
+.divider{width:100%;max-width:960px;height:1px;background:linear-gradient(90deg,transparent,var(--bd2),transparent);margin:0 auto}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:64px}
+.hero-inner{max-width:720px}
+.hero-tag{font-family:var(--ui);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:32px;display:flex;align-items:center;gap:8px}
+.hero-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--blue);animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-h{font-family:var(--ui);font-size:clamp(32px,4.5vw,56px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:24px}
+.hero-h .gold{color:var(--gold)}
+.hero-p{font-size:15px;color:var(--t2);line-height:1.85;max-width:540px;margin-bottom:40px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn1{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--bg);background:var(--gold);border:none;padding:12px 28px;cursor:pointer;border-radius:var(--r);text-decoration:none;transition:.2s;display:inline-block}
+.btn1:hover{opacity:.85}
+.btn2{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--t2);background:none;border:1px solid var(--bd);padding:11px 24px;cursor:pointer;border-radius:var(--r);text-decoration:none;transition:.2s;display:inline-block}
+.btn2:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{display:flex;gap:40px;margin-top:56px}
+.h-stat-n{font-family:var(--ui);font-size:28px;font-weight:700;color:#fff}
+.h-stat-l{font-family:var(--ui);font-size:10px;color:var(--t3);letter-spacing:.06em;margin-top:2px}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-left .sec-t{margin-bottom:20px}
+.about-left p{font-size:14px;color:var(--t2);line-height:1.85;margin-bottom:16px}
+.about-quote{border-left:2px solid var(--gold);padding:16px 20px;background:rgba(200,168,110,.04);margin:24px 0;font-size:13px;color:var(--t1);line-height:1.7;font-weight:500}
+.about-right{display:flex;flex-direction:column;gap:14px}
+.a-card{padding:16px;border:1px solid var(--bd);border-radius:var(--r);background:var(--bg3);transition:.2s}
+.a-card:hover{border-color:var(--bd2)}
+.a-card h4{font-family:var(--ui);font-size:13px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.a-card p{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* SERVICES */
+#services{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin-top:48px}
+.svc-card{background:var(--bg2);padding:32px 28px;transition:.2s}
+.svc-card:hover{background:var(--bg3)}
+.svc-card h3{font-family:var(--ui);font-size:14px;font-weight:600;color:#fff;margin-bottom:10px}
+.svc-card p{font-size:13px;color:var(--t2);line-height:1.7}
+.svc-tag{display:inline-block;margin-top:14px;font-family:var(--ui);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);border:1px solid var(--bd2);padding:3px 8px;border-radius:2px}
+
+/* MARKET OBSERVATION */
+#observation{background:var(--bg2)}
+.obs-content{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:40px}
+.obs-text p{font-size:14px;color:var(--t2);line-height:1.85;margin-bottom:16px}
+.obs-data{border:1px solid var(--bd2);border-radius:6px;padding:32px;background:linear-gradient(135deg,rgba(140,165,220,.03),rgba(200,168,110,.02))}
+.obs-num{font-family:var(--ui);font-size:44px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
+.obs-desc{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:24px}
+.obs-link{font-family:var(--ui);font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;letter-spacing:.04em;transition:.2s}
+.obs-link:hover{color:var(--t1)}
+
+/* MARKET INSIGHT PAGE */
+#mi-page{background:var(--bg);display:none}
+.mi-tabs{display:flex;gap:2px;margin:32px 0 40px;border:1px solid var(--bd);border-radius:4px;overflow:hidden;max-width:520px}
+.mi-tab{flex:1;font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.04em;padding:10px 16px;background:none;border:none;color:var(--t3);cursor:pointer;transition:.2s;text-align:center}
+.mi-tab.on{background:rgba(140,165,220,.1);color:var(--blue)}
+.mi-panel{display:none}
+.mi-panel.on{display:block}
+.mi-panel h3{font-family:var(--ui);font-size:20px;font-weight:600;color:#fff;margin-bottom:16px;line-height:1.3}
+.mi-panel p{font-size:14px;color:var(--t2);line-height:1.85;margin-bottom:16px}
+.mi-panel .mi-points{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.mi-panel .mi-pt{font-size:13px;color:var(--t2);padding-left:16px;position:relative;line-height:1.65}
+.mi-panel .mi-pt::before{content:'—';position:absolute;left:0;color:var(--t3)}
+.mi-cta{margin-top:56px;padding:40px;border:1px solid var(--bd2);border-radius:6px;background:linear-gradient(135deg,rgba(140,165,220,.03),rgba(200,168,110,.02));text-align:center}
+.mi-cta h3{font-family:var(--ui);font-size:18px;font-weight:600;color:#fff;margin-bottom:10px}
+.mi-cta p{font-size:13px;color:var(--t2);margin-bottom:20px;line-height:1.7}
+
+/* NETWORK */
+#network{background:var(--bg2)}
+.net-layout{display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start}
+.net-left p{font-size:14px;color:var(--t2);line-height:1.85;margin-top:16px}
+.net-metrics{margin-top:32px}
+.met-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}
+.met-row:last-child{border:none}
+.met-label{font-family:var(--ui);font-size:12px;color:var(--t2)}
+.met-val{font-family:var(--ui);font-size:18px;font-weight:700;color:var(--gold)}
+.net-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.net-card{border:1px solid var(--bd);border-radius:var(--r);padding:22px 18px;background:var(--bg3);transition:.2s}
+.net-card:hover{border-color:var(--bd2)}
+.net-card-icon{font-size:18px;margin-bottom:10px}
+.net-card h4{font-family:var(--ui);font-size:13px;font-weight:600;color:#fff;margin-bottom:6px}
+.net-card p{font-size:12px;color:var(--t2);line-height:1.6}
+
+/* PARTNERS */
+#partners{background:var(--bg);padding:40px 0;overflow:hidden}
+.par-wrap{position:relative}
+.par-marquee{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);padding:12px 0}
+.par-track{display:flex;gap:48px;align-items:center;animation:mq 28s linear infinite;flex-shrink:0;padding-right:48px}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.par-marquee:hover .par-track{animation-play-state:paused}
+.par-item{flex-shrink:0;height:36px;display:flex;align-items:center}
+.par-item img{max-height:32px;max-width:120px;object-fit:contain;filter:brightness(.5) grayscale(.3);transition:.3s}
+.par-item:hover img{filter:brightness(.85) grayscale(0)}
+.par-note{text-align:center;margin-top:12px;font-family:var(--ui);font-size:10px;color:var(--t3);line-height:1.7;max-width:500px;margin-left:auto;margin-right:auto;padding:0 24px}
+
+/* CONTACT */
+#contact{background:var(--bg2);overflow:hidden}
+.con-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.con-left h2{font-family:var(--ui);font-size:clamp(22px,2.8vw,32px);font-weight:600;color:#fff;line-height:1.2;margin-top:14px}
+.con-left h2 .gold{color:var(--gold)}
+.con-left>p{margin-top:18px;font-size:14px;color:var(--t2);line-height:1.8}
+.con-info{margin-top:28px;display:flex;flex-direction:column;gap:10px}
+.con-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t2)}
+.con-row a{color:var(--blue);text-decoration:none}
+.con-form{background:var(--bg3);border:1px solid var(--bd);border-radius:6px;padding:32px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:10px 12px;font-family:inherit;font-size:13px;color:var(--t1);outline:none;transition:.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue)}
+.fg textarea{min-height:80px;resize:vertical}
+.fg select option{background:var(--bg3)}
+.con-submit{width:100%;padding:13px;background:var(--gold);color:var(--bg);font-family:var(--ui);font-size:12px;font-weight:700;letter-spacing:.08em;border:none;border-radius:var(--r);cursor:pointer;transition:.2s;margin-top:4px}
+.con-submit:hover{opacity:.85}
+
+/* FOOTER */
+footer{padding:32px 48px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;background:var(--bg);flex-wrap:wrap;gap:12px}
+.f-logo{font-family:var(--ui);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--t3);cursor:pointer;user-select:none}
+.f-copy{font-family:var(--ui);font-size:11px;color:var(--t3)}
+.f-links{display:flex;gap:16px;list-style:none}
+.f-links a{font-family:var(--ui);font-size:11px;color:var(--t3);text-decoration:none;transition:.2s}
+.f-links a:hover{color:var(--t2)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.rv.v{opacity:1;transform:none}
+
+/* ADMIN */
+#adm-overlay{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);backdrop-filter:blur(8px)}
+#adm-overlay.open{display:flex;align-items:center;justify-content:center}
+.adm-box{background:#0f1219;border:1px solid rgba(140,165,220,.2);border-radius:8px;width:min(92vw,860px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.adm-hd{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--bd);flex-shrink:0}
+.adm-hd h2{font-family:var(--ui);font-size:14px;font-weight:700;color:#fff;letter-spacing:.05em}
+.adm-x{background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer}
+.adm-x:hover{color:#fff}
+#adm-login{padding:36px;display:flex;flex-direction:column;gap:14px;align-items:center}
+#adm-login p{font-family:var(--ui);font-size:12px;color:var(--t2)}
+#adm-login input{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--t1);outline:none;width:240px;text-align:center;letter-spacing:.08em}
+#adm-login input:focus{border-color:var(--blue)}
+#adm-login button{padding:10px 28px;background:var(--gold);color:var(--bg);border:none;border-radius:var(--r);font-family:var(--ui);font-size:12px;font-weight:700;cursor:pointer}
+#adm-login .err{color:#e87070;font-size:11px;font-family:var(--ui)}
+#adm-editor{display:none;flex-direction:column;flex:1;overflow:hidden}
+.adm-tabs{display:flex;gap:2px;padding:10px 14px;border-bottom:1px solid var(--bd);overflow-x:auto;flex-shrink:0}
+.adm-tab{font-family:var(--ui);font-size:10px;font-weight:600;letter-spacing:.06em;padding:6px 12px;background:none;border:1px solid transparent;border-radius:2px;color:var(--t3);cursor:pointer;white-space:nowrap;transition:.15s}
+.adm-tab.on,.adm-tab:hover{background:rgba(140,165,220,.1);border-color:var(--bd2);color:var(--blue)}
+.adm-body{flex:1;overflow-y:auto;padding:20px}
+.adm-ft{display:flex;gap:8px;padding:12px 22px;border-top:1px solid var(--bd);flex-shrink:0}
+.adm-save{padding:9px 24px;background:var(--gold);color:var(--bg);border:none;border-radius:var(--r);font-family:var(--ui);font-size:11px;font-weight:700;cursor:pointer}
+.adm-reset{padding:9px 18px;background:none;border:1px solid var(--bd);color:var(--t3);border-radius:var(--r);font-family:var(--ui);font-size:11px;cursor:pointer}
+.adm-reset:hover{border-color:#e87070;color:#e87070}
+.adm-ok{font-family:var(--ui);font-size:11px;color:#6ecc8a;align-self:center;display:none}
+.af-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.af-group{font-family:var(--ui);font-size:12px;font-weight:700;color:var(--blue);margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.af-group:first-child{margin-top:0}
+.af-field{margin-bottom:14px}
+.af-field label{display:block;font-family:var(--ui);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
+.af-field input,.af-field textarea{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:var(--r);padding:8px 10px;font-family:'Noto Sans KR','Noto Sans TC',var(--ui),sans-serif;font-size:12px;color:var(--t1);outline:none;transition:.2s}
+.af-field input:focus,.af-field textarea:focus{border-color:var(--blue)}
+.af-field textarea{resize:vertical;min-height:60px}
+.logo-area{display:flex;align-items:center;gap:14px;margin-top:4px}
+.logo-pv{width:100px;height:42px;border:1px dashed var(--bd);border-radius:var(--r);display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--bg)}
+.logo-pv img{max-width:90px;max-height:36px;object-fit:contain}
+.up-btn{font-family:var(--ui);font-size:10px;font-weight:600;padding:6px 14px;background:rgba(140,165,220,.1);border:1px solid var(--bd2);color:var(--blue);border-radius:var(--r);cursor:pointer}
+.rm-btn{font-family:var(--ui);font-size:10px;padding:6px 12px;background:none;border:1px solid var(--bd);color:var(--t3);border-radius:var(--r);cursor:pointer}
+.par-up-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.par-up-cell{border:1px dashed var(--bd);border-radius:var(--r);padding:8px;display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--bg)}
+.par-up-cell .pv{width:100%;height:36px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.par-up-cell .pv img{max-width:100%;max-height:32px;object-fit:contain}
+.par-up-cell button{font-size:9px;padding:3px 7px;border-radius:2px;cursor:pointer;font-family:var(--ui)}
+.pu-rm{background:none;border:1px solid var(--bd);color:var(--t3)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){nav{padding:0 24px}.n-links{display:none}section{padding:72px 24px}.about-grid,.obs-content,.net-layout,.con-layout{grid-template-columns:1fr;gap:40px}.svc-grid{grid-template-columns:1fr 1fr}.af-row{grid-template-columns:1fr}footer{padding:20px 24px}}
+@media(max-width:640px){:root{--gap:56px}.hero-h{font-size:28px}.svc-grid{grid-template-columns:1fr}.net-cards{grid-template-columns:1fr}.hero-stats{flex-direction:column;gap:16px}.hero-btns{flex-direction:column;align-items:flex-start}footer{flex-direction:column;align-items:flex-start}.par-up-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="n-logo" href="#home" id="nav-logo">
+    <img id="logo-img" alt="VAST MEDIA">
+    <div id="logo-text"><span class="n-en">VAST MEDIA</span><span class="n-cn">皡翰娛樂</span></div>
+  </a>
+  <ul class="n-links" id="nav-links"></ul>
+  <div class="n-right">
+    <div class="lang-toggle">
+      <button class="lang-btn on" id="btn-ko" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" id="btn-tc" onclick="setLang('tc')">TC</button>
+    </div>
+    <a href="#contact" class="n-cta" id="nav-cta"></a>
+  </div>
+</nav>
+
+<section id="home"><div class="inner hero-inner">
+  <div class="hero-tag" id="hero-tag"></div>
+  <h1 class="hero-h" id="hero-h"></h1>
+  <p class="hero-p" id="hero-p"></p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn1" id="hero-b1"></a>
+    <a href="#services" class="btn2" id="hero-b2"></a>
+  </div>
+  <div class="hero-stats" id="hero-stats"></div>
+</div></section>
+
+<div class="divider"></div>
+
+<section id="about"><div class="inner">
+  <div class="about-grid">
+    <div class="about-left rv">
+      <p class="lbl" id="abt-lbl"></p>
+      <h2 class="sec-t" id="abt-t"></h2>
+      <p id="abt-p1"></p>
+      <p id="abt-p2"></p>
+      <div class="about-quote" id="abt-q"></div>
+    </div>
+    <div class="about-right rv" id="abt-cards"></div>
+  </div>
+</div></section>
+
+<div class="divider"></div>
+
+<section id="services"><div class="inner">
+  <div class="rv">
+    <p class="lbl" id="svc-lbl"></p>
+    <h2 class="sec-t" id="svc-t"></h2>
+    <p class="sec-p" id="svc-p"></p>
+  </div>
+  <div class="svc-grid" id="svc-grid"></div>
+</div></section>
+
+<div class="divider"></div>
+
+<section id="observation"><div class="inner">
+  <p class="lbl rv" id="obs-lbl"></p>
+  <h2 class="sec-t rv" id="obs-t"></h2>
+  <div class="obs-content">
+    <div class="obs-text rv">
+      <p id="obs-p1"></p>
+      <p id="obs-p2"></p>
+    </div>
+    <div class="obs-data rv">
+      <div class="obs-num" id="obs-n1"></div>
+      <div class="obs-desc" id="obs-d1"></div>
+      <div style="border-top:1px solid var(--bd);padding-top:20px;margin-top:4px">
+        <div class="obs-num" style="font-size:34px" id="obs-n2"></div>
+        <div class="obs-desc" id="obs-d2"></div>
+      </div>
+      <a href="#mi-page" class="obs-link" id="obs-link" onclick="showMI()">→</a>
+    </div>
+  </div>
+</div></section>
+
+<div class="divider"></div>
+
+<section id="mi-page"><div class="inner">
+  <p class="lbl" id="mi-lbl"></p>
+  <h2 class="sec-t" id="mi-t"></h2>
+  <p class="sec-p" id="mi-desc"></p>
+  <div class="mi-tabs" id="mi-tabs"></div>
+  <div id="mi-panels"></div>
+  <div class="mi-cta rv">
+    <h3 id="mi-cta-t"></h3>
+    <p id="mi-cta-p"></p>
+    <a href="#contact" class="btn1" id="mi-cta-b"></a>
+  </div>
+</div></section>
+
+<div class="divider"></div>
+
+<section id="network"><div class="inner">
+  <div class="net-layout">
+    <div class="rv">
+      <p class="lbl" id="net-lbl"></p>
+      <h2 class="sec-t" id="net-t"></h2>
+      <p class="net-left" id="net-p"></p>
+      <div class="net-metrics" id="net-mets"></div>
+    </div>
+    <div class="net-cards rv" id="net-cards"></div>
+  </div>
+</div></section>
+
+<div class="divider" id="div-par-pre"></div>
+<section id="partners"><div class="par-wrap">
+  <p class="lbl" style="text-align:center;margin-bottom:16px" id="par-lbl"></p>
+  <div class="par-marquee" id="par-mq"></div>
+  <p class="par-note" id="par-note"></p>
+</div></section>
+<div class="divider" id="div-par-post"></div>
+
+<section id="contact"><div class="inner">
+  <div class="con-layout">
+    <div class="con-left rv">
+      <p class="lbl" id="con-lbl"></p>
+      <h2 id="con-h"></h2>
+      <p id="con-p"></p>
+      <div class="con-info">
+        <div class="con-row">✉ <a href="mailto:vastmedia@vastme.net">vastmedia@vastme.net</a></div>
+        <div class="con-row" id="con-loc"></div>
+        <div class="con-row" id="con-lang"></div>
+      </div>
+    </div>
+    <div class="con-form rv">
+      <p class="lbl" style="margin-bottom:18px" id="con-fl"></p>
+      <div class="fg"><label id="fl-co"></label><input type="text"></div>
+      <div class="fg"><label id="fl-nm"></label><input type="text"></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="your@company.com"></div>
+      <div class="fg"><label id="fl-tp"></label><select id="con-sel"></select></div>
+      <div class="fg"><label id="fl-mg"></label><textarea id="con-ta"></textarea></div>
+      <button class="con-submit" id="con-sub"></button>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="f-logo" id="f-logo">VAST MEDIA · 皡翰娛樂</div>
+  <p class="f-copy" id="f-copy"></p>
+  <ul class="f-links" id="f-links"></ul>
+</footer>
+
+<div id="adm-overlay">
+  <div class="adm-box">
+    <div class="adm-hd"><h2>VAST MEDIA — CMS</h2><button class="adm-x" onclick="closeAdm()">✕</button></div>
+    <div id="adm-login">
+      <p>管理員密碼</p>
+      <input type="password" id="adm-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')admLogin()">
+      <button onclick="admLogin()">登入</button>
+      <span class="err" id="adm-err" style="display:none">密碼錯誤</span>
+    </div>
+    <div id="adm-editor">
+      <div class="adm-tabs" id="adm-tabs"></div>
+      <div class="adm-body" id="adm-body"></div>
+      <div class="adm-ft">
+        <button class="adm-save" onclick="saveAdm()">儲存</button>
+        <button class="adm-reset" onclick="resetAdm()">重置</button>
+        <span class="adm-ok" id="adm-ok">✓ 已儲存</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="logo-fi" accept="image/*" style="display:none">
+<input type="file" id="par-fi" accept="image/*" style="display:none">
+
+<script>
+const D={ko:{
+'nav.about':'회사 소개','nav.svc':'서비스','nav.obs':'시장 관찰','nav.mi':'마켓 인사이트','nav.net':'네트워크','nav.par':'파트너','nav.con':'문의','nav.cta':'파트너십 문의',
+'hero.tag':'Taiwan / HK / Macau · MMORPG Influencer & Guild Network',
+'hero.h':'Influencer & Guild\n<span class="gold">Network.</span>',
+'hero.p':'인플루언서 중심의 길드 생태계를 통해 대만·홍콩·마카오 MMORPG 커뮤니티 론칭과 성장을 지원하는 전략적 파트너입니다.',
+'hero.b1':'파트너십 문의','hero.b2':'서비스 보기',
+'stat0.n':'50+','stat0.l':'KOL 파트너십','stat1.n':'20+','stat1.l':'MMO 프로모션',
+'abt.lbl':'ABOUT','abt.t':'MMORPG 생태계를\n가장 깊이 이해하는 팀',
+'abt.p1':'VAST MEDIA는 대만·홍콩·마카오 MMORPG 시장에 특화된 인플루언서 마케팅 및 커뮤니티 운영 전문 기업입니다. KOL 섭외를 넘어 플레이어 생태계 전체를 설계합니다.',
+'abt.p2':'실황주, 길드 리더, 커뮤니티 관리자와의 긴밀한 네트워크를 바탕으로 해외 게임사가 실질적인 플레이어 베이스를 구축할 수 있도록 지원합니다.',
+'abt.q':'시장에서의 성공은 단기 노출이 아닌 커뮤니티의 신뢰를 얻는 것에서 시작됩니다.',
+'abt0.t':'KOL 매니지먼트','abt0.p':'커뮤니티를 움직이는 KOL과의 장기 파트너십 구축',
+'abt1.t':'길드 커뮤니티 운영','abt1.p':'MMORPG 생태계 핵심인 길드 네트워크 설계·관리',
+'abt2.t':'시장 인사이트','abt2.p':'플레이어 행동과 경쟁 구도 분석 기반 전략 수립',
+'svc.lbl':'SERVICES','svc.t':'통합 전략 솔루션','svc.p':'론칭 전 설계부터 론칭 후 커뮤니티 유지까지, 필요한 모든 것을 제공합니다.',
+'svc0.t':'인플루언서 캠페인','svc0.p':'게임 장르와 타겟에 최적화된 KOL 캠페인을 설계하고 집행합니다.','svc0.tag':'Campaign',
+'svc1.t':'길드 구축 & 운영','svc1.p':'공식 길드 네트워크를 설계하고 플레이어 결속력을 관리합니다.','svc1.tag':'Guild Ops',
+'svc2.t':'스트리밍 파트너십','svc2.p':'서비스 라이프사이클과 연동된 장기 스트리밍 협력을 기획합니다.','svc2.tag':'Streaming',
+'svc3.t':'VIP 유저 모니터링','svc3.p':'핵심 플레이어의 활동과 이탈 징후를 모니터링하고 리텐션 전략을 제안합니다.','svc3.tag':'VIP',
+'svc4.t':'이벤트 & 대회','svc4.p':'길드 대전과 서버 랭킹 이벤트를 기획하여 커뮤니티를 활성화합니다.','svc4.tag':'Events',
+'svc5.t':'시장 컨설팅','svc5.p':'시장 분석, 경쟁 포지셔닝, 론칭 타임라인 등 진출 전략을 제공합니다.','svc5.tag':'Consulting',
+'obs.lbl':'MARKET OBSERVATION','obs.t':'커뮤니티가 시장을 움직입니다',
+'obs.p1':'대만·홍콩·마카오 MMORPG 시장은 광고 노출보다 커뮤니티 구조가 유저 확보와 유지를 결정합니다. 공략 문화, 길드 경쟁, 스트리밍 생태가 유기적으로 연결되어 있어 이 구조를 이해하는 것이 시장 진입의 핵심입니다.',
+'obs.p2':'단기 캠페인으로는 일시적 유입만 가능하며, KOL·길드·커뮤니티가 안정적 생태계를 형성할 때 자연 성장이 시작됩니다.',
+'obs.n1':'74%','obs.d1':'플레이어의 게임 참여 결정에 KOL과 커뮤니티 콘텐츠가 영향',
+'obs.n2':'3.2x','obs.d2':'길드 소속 플레이어의 평균 체류 기간이 일반 대비 3.2배',
+'obs.link':'전체 마켓 인사이트 보기 →',
+'mi.lbl':'MARKET INSIGHT','mi.t':'Taiwan / HK / Macau\nMMORPG Market Insight',
+'mi.desc':'인플루언서, 길드, 유저 생태계가 이 시장의 MMORPG 성장에 미치는 영향을 분석합니다.',
+'mi.tab0':'Market Structure','mi.tab1':'KOL Influence','mi.tab2':'Community & Guild',
+'mi0.t':'시장 구조','mi0.p1':'대만·홍콩·마카오는 MMORPG에 대한 높은 충성도를 보이는 시장입니다. 플레이어들은 캐릭터 성장, 장비 육성, 길드 간 경쟁에 깊이 몰입하며 커뮤니티 문화가 게임 선택과 지속 여부에 결정적 영향을 미칩니다.','mi0.p2':'동시에 여러 MMORPG를 주시하지만 실제 시간과 비용을 투입하는 타이틀은 2~3개로 제한되며, 론칭 2주 내 길드 형성 여부가 장기 유저 확보의 분수령입니다.',
+'mi0.pts':'한국·일본과 구별되는 고유한 소비 패턴|커뮤니티 규모와 길드 활성도가 게임 선택 기준|모바일-PC 크로스 플레이 선호도 높음',
+'mi1.t':'KOL의 영향력','mi1.p1':'이 시장에서 KOL은 단순 노출 채널이 아닙니다. 인기 스트리머가 게임에 진입하면 길드를 설립하고 팔로워를 모집하며 서버 내 경쟁 구도를 형성합니다.','mi1.p2':'KOL 추천으로 유입된 유저의 리텐션은 일반 대비 2배 이상이며, 장기 파트너십이 단기 광고보다 현저히 높은 효율을 보입니다.',
+'mi1.pts':'스트리머 진입 → 길드 설립 → 서버 활성화의 자연스러운 흐름|상위 KOL 1명이 200~500명의 길드 멤버를 즉시 동원|장기 앰배서더 프로그램이 콘텐츠 연속성 확보의 핵심',
+'mi2.t':'커뮤니티와 길드','mi2.p1':'공회(길드)는 MMORPG의 핵심 사회적 단위입니다. 플레이어는 공회전, 영지 쟁탈, 자원 경쟁을 통해 소속감과 투입감을 형성하며, 공회 소속 여부가 게임 지속과 과금 수준을 크게 좌우합니다.','mi2.p2':'KOL·길드·커뮤니티가 안정적 생태계를 형성하면 마케팅 비용 없이도 자연 성장이 시작됩니다. 이것이 이 시장의 가장 핵심적인 특성입니다.',
+'mi2.pts':'공회 소속 플레이어의 과금률이 비소속 대비 2.8배|공회 간 경쟁이 자발적 콘텐츠 생산과 바이럴을 유도|커뮤니티 기반 성장 구조가 장기 수명의 열쇠',
+'mi.cta.t':'마켓 파트너를 찾고 계신가요?','mi.cta.p':'인플루언서 전략과 길드 운영이 귀사의 시장 진출에 어떤 도움이 될 수 있는지 논의합니다.','mi.cta.b':'문의하기 →',
+'net.lbl':'NETWORK','net.t':'실전 네트워크',
+'net.p':'단순한 연락처 목록이 아닌, 각 KOL·공회장·스트리머와의 신뢰 관계를 바탕으로 마케팅 목표를 달성할 수 있는 운영 구조를 갖추고 있습니다.',
+'met0.l':'MMORPG KOL','met0.v':'200+','met1.l':'협력 길드','met1.v':'50+','met2.l':'커뮤니티 도달','met2.v':'5M+',
+'nt0.i':'🎮','nt0.t':'MMORPG 스트리머','nt0.p':'고정 시청자와 강력한 커뮤니티 영향력을 보유한 전문 스트리머.',
+'nt1.i':'⚔️','nt1.t':'공회장 & 길드 리더','nt1.p':'수십~수백 명의 멤버를 이끌며 신게임 진입에 직접적 영향력 보유.',
+'nt2.i':'📣','nt2.t':'공략 크리에이터','nt2.p':'티어표 분석, 정보 전달 등 커뮤니티에서 신뢰받는 정보형 인플루언서.',
+'nt3.i':'🌐','nt3.t':'앰배서더 네트워크','nt3.p':'론칭부터 장기 서비스까지 함께하는 공식 브랜드 앰배서더.',
+'par.lbl':'PARTNERS','par.note':'파트너사의 요청에 따라 구체적 협업 내용은 외부에 공개하지 않습니다.\n제안 단계에서 관련 정보를 공유드립니다.',
+'con.lbl':'CONTACT','con.h':'마켓 파트너를\n<span class="gold">찾고 계신가요?</span>',
+'con.p':'어떤 단계에 있든 VAST MEDIA가 도움이 될 수 있습니다. 구체적인 협력 방안을 논의합니다.',
+'con.loc':'📍 타이베이 | 서울 협력 가능','con.lang':'💬 한국어 / 繁中 / English',
+'con.fl':'문의 양식','fl.co':'회사명','fl.nm':'담당자','fl.tp':'유형','fl.mg':'메시지',
+'sel0':'선택해주세요','sel1':'시장 진입 전략','sel2':'KOL 네트워크','sel3':'길드 구축','sel4':'장기 파트너십','sel5':'기타',
+'con.sub':'문의 보내기 →','con.ta':'프로젝트와 협력 방향을 간략히 설명해 주세요...',
+'f.copy':'© 2025 VAST MEDIA 皡翰娛樂','fn.about':'회사 소개','fn.svc':'서비스','fn.mi':'인사이트','fn.con':'문의'
+},tc:{
+'nav.about':'關於我們','nav.svc':'服務','nav.obs':'市場觀察','nav.mi':'市場洞察','nav.net':'網絡','nav.par':'合作夥伴','nav.con':'聯絡我們','nav.cta':'合作諮詢',
+'hero.tag':'Taiwan / HK / Macau · MMORPG Influencer & Guild Network',
+'hero.h':'Influencer & Guild\n<span class="gold">Network.</span>',
+'hero.p':'透過影響者驅動的公會生態系，協助遊戲發行商在台港澳市場成功上線並拓展 MMORPG 社群的策略夥伴。',
+'hero.b1':'立即洽詢','hero.b2':'了解服務',
+'stat0.n':'50+','stat0.l':'KOL 合作','stat1.n':'20+','stat1.l':'MMO 推廣',
+'abt.lbl':'ABOUT','abt.t':'最深度理解\nMMORPG 生態系的團隊',
+'abt.p1':'VAST MEDIA 皡翰娛樂專注於台港澳遊戲市場的影響者行銷與社群運營，特別深耕 MMORPG 類型。不只接洽 KOL，而是整體設計玩家生態系統。',
+'abt.p2':'基於與直播主、公會領袖、社群管理者的深度網絡，協助海外遊戲公司建立實質的玩家基礎。',
+'abt.q':'市場的成功始於贏得社群的信任，而非短期曝光。',
+'abt0.t':'KOL 影響者管理','abt0.p':'建立能帶動社群的 KOL 長期夥伴關係',
+'abt1.t':'公會社群經營','abt1.p':'設計並管理 MMORPG 生態核心的公會網絡',
+'abt2.t':'市場洞察','abt2.p':'透過玩家行為與競爭態勢分析協助策略制定',
+'svc.lbl':'SERVICES','svc.t':'整合策略解決方案','svc.p':'從上線前策略規劃到上線後社群維護，提供市場所需的一切。',
+'svc0.t':'影響者行銷企劃','svc0.p':'依遊戲類型與目標族群量身打造影響者行銷活動。','svc0.tag':'Campaign',
+'svc1.t':'公會社群建立與經營','svc1.p':'設計在地官方公會網絡，管理競爭氛圍與社群凝聚力。','svc1.tag':'Guild Ops',
+'svc2.t':'長期直播夥伴計畫','svc2.p':'與服務生命週期連動的持續直播合作企劃。','svc2.tag':'Streaming',
+'svc3.t':'VIP 玩家監測','svc3.p':'監測核心玩家活動與流失徵兆，提供客製留存策略。','svc3.tag':'VIP',
+'svc4.t':'活動賽事企劃','svc4.p':'企劃公會對戰與排行賽事，促進自發性內容產出。','svc4.tag':'Events',
+'svc5.t':'市場策略顧問','svc5.p':'市場分析、競品定位、上線時程規劃等全方位策略。','svc5.tag':'Consulting',
+'obs.lbl':'MARKET OBSERVATION','obs.t':'社群驅動市場成長',
+'obs.p1':'台港澳 MMORPG 市場中，廣告曝光不如社群結構重要。攻略文化、公會競爭、直播生態有機連結，理解這個結構是市場進入的核心。',
+'obs.p2':'短期活動僅帶來一時曝光。當 KOL、公會、玩家形成穩定生態時，遊戲才能自然且持續地成長。',
+'obs.n1':'74%','obs.d1':'玩家的遊戲參與決策受社群及 KOL 內容顯著影響',
+'obs.n2':'3.2x','obs.d2':'公會型玩家的平均留存期間為一般玩家的 3.2 倍',
+'obs.link':'閱讀完整市場洞察 →',
+'mi.lbl':'MARKET INSIGHT','mi.t':'Taiwan / HK / Macau\nMMORPG Market Insight',
+'mi.desc':'深入理解影響者、公會社群與玩家生態如何影響 MMORPG 在台港澳市場的成長。',
+'mi.tab0':'Market Structure','mi.tab1':'KOL Influence','mi.tab2':'Community & Guild',
+'mi0.t':'市場結構','mi0.p1':'台港澳是對 MMORPG 具有高度黏著力的成熟市場。玩家重視角色養成、裝備打造與公會競爭，社群文化對遊戲選擇與持續意願的影響極為深遠。','mi0.p2':'玩家同時關注多款 MMORPG，但實際投入時間與金錢的通常只有 2~3 款。上線兩週內公會形成與否，是長期用戶留存的分水嶺。',
+'mi0.pts':'與韓國、日本截然不同的消費模式與社群結構|社群規模與公會活躍度是遊戲選擇的核心標準|行動端與 PC 跨平台遊玩偏好高',
+'mi1.t':'KOL 的影響力','mi1.p1':'在這個市場中，KOL 不只是曝光工具。人氣直播主進入遊戲後會建立公會、招募玩家、形成伺服器競爭格局，直接影響社群建立與玩家留存。','mi1.p2':'KOL 導入玩家的留存率為一般導入的 2 倍以上，長期夥伴關係的效率顯著高於短期廣告。',
+'mi1.pts':'直播主進入 → 建立公會 → 招募玩家 → 活化伺服器|頂級 KOL 可即時動員 200~500 名公會成員|年度品牌大使計畫確保內容延續性',
+'mi2.t':'社群與公會文化','mi2.p1':'公會是 MMORPG 的核心社交單位。玩家透過公會戰、領地爭奪、資源競爭建立歸屬感，公會歸屬直接影響持續遊玩與付費意願。','mi2.p2':'當 KOL、公會、社群形成穩定生態，遊戲便能自然成長。這是此市場最核心的特性。',
+'mi2.pts':'公會玩家的付費率為非公會玩家的 2.8 倍|公會間競爭促進自發性內容產出與口碑擴散|社群驅動成長是長期壽命的關鍵',
+'mi.cta.t':'正在尋找市場合作夥伴？','mi.cta.p':'歡迎與我們交流，了解影響者策略與公會生態如何協助您的產品建立長期動能。','mi.cta.b':'立即洽詢 →',
+'net.lbl':'NETWORK','net.t':'實戰網絡',
+'net.p':'不只是聯絡人名單。與每位 KOL、公會長、直播主建立的深度信任關係，構成能實際達成行銷目標的運營架構。',
+'met0.l':'MMORPG KOL','met0.v':'200+','met1.l':'合作公會','met1.v':'50+','met2.l':'社群觸及','met2.v':'5M+',
+'nt0.i':'🎮','nt0.t':'MMORPG 直播主','nt0.p':'擁有固定觀眾群與強大社群影響力的專業直播主。',
+'nt1.i':'⚔️','nt1.t':'公會長與公會官員','nt1.p':'帶領數十至數百名成員，對新遊戲進入意願具直接影響力。',
+'nt2.i':'📣','nt2.t':'攻略創作者','nt2.p':'擅長攻略、強度排行分析，在社群中享有高度信任。',
+'nt3.i':'🌐','nt3.t':'品牌大使網絡','nt3.p':'從上線到長期服務全程同行的官方品牌大使。',
+'par.lbl':'PARTNERS','par.note':'依合作夥伴要求，詳細內容不對外公開。\n於提案階段將提供相關資料供參考。',
+'con.lbl':'CONTACT','con.h':'在尋找市場\n<span class="gold">合作夥伴嗎？</span>',
+'con.p':'無論您的計畫正處於哪個階段，VAST MEDIA 都能協助。歡迎討論具體合作方案。',
+'con.loc':'📍 台北 | 支援港澳及首爾對接','con.lang':'💬 한국어 / 繁中 / English',
+'con.fl':'聯絡表單','fl.co':'公司名稱','fl.nm':'聯絡人','fl.tp':'類型','fl.mg':'訊息',
+'sel0':'請選擇','sel1':'市場進入策略','sel2':'KOL 網絡合作','sel3':'公會社群建立','sel4':'長期夥伴關係','sel5':'其他',
+'con.sub':'送出洽詢 →','con.ta':'請描述您的遊戲專案與合作需求...',
+'f.copy':'© 2025 皡翰娛樂 VAST MEDIA','fn.about':'關於','fn.svc':'服務','fn.mi':'洞察','fn.con':'聯絡'
+}};
+
+let L='ko',cms={},logo=null,pLogos=[];
+const PW='vestmedia';
+
+function load(){try{const s=localStorage.getItem('vm');if(s){const p=JSON.parse(s);cms=p.i||{};logo=p.l||null;pLogos=(p.p||[]).filter(x=>x)}}catch(e){}}
+function save(){localStorage.setItem('vm',JSON.stringify({i:cms,l:logo,p:pLogos}))}
+function g(l,k){return(cms[l]&&cms[l][k]!==undefined)?cms[l][k]:D[l][k]||''}
+
+function render(){
+  // Logo
+  const li=document.getElementById('logo-img'),lt=document.getElementById('logo-text');
+  if(logo){li.src=logo;li.style.display='block';lt.style.display='none'}else{li.style.display='none';lt.style.display='flex'}
+  // Nav
+  const nl=[['#about','nav.about'],['#services','nav.svc'],['#observation','nav.obs'],['#network','nav.net'],['#contact','nav.con']];
+  document.getElementById('nav-links').innerHTML=nl.map(([h,k])=>`<li><a href="${h}">${g(L,k)}</a></li>`).join('');
+  document.getElementById('nav-cta').textContent=g(L,'nav.cta');
+  // Hero
+  document.getElementById('hero-tag').innerHTML=g(L,'hero.tag');
+  document.getElementById('hero-h').innerHTML=g(L,'hero.h').replace(/\n/g,'<br>');
+  document.getElementById('hero-p').innerHTML=g(L,'hero.p').replace(/\n/g,'<br>');
+  document.getElementById('hero-b1').textContent=g(L,'hero.b1');
+  document.getElementById('hero-b2').textContent=g(L,'hero.b2');
+  document.getElementById('hero-stats').innerHTML=[0,1].map(i=>`<div><div class="h-stat-n">${g(L,'stat'+i+'.n')}</div><div class="h-stat-l">${g(L,'stat'+i+'.l')}</div></div>`).join('');
+  // About
+  document.getElementById('abt-lbl').textContent=g(L,'abt.lbl');
+  document.getElementById('abt-t').innerHTML=g(L,'abt.t').replace(/\n/g,'<br>');
+  document.getElementById('abt-p1').textContent=g(L,'abt.p1');
+  document.getElementById('abt-p2').textContent=g(L,'abt.p2');
+  document.getElementById('abt-q').textContent=g(L,'abt.q');
+  document.getElementById('abt-cards').innerHTML=[0,1,2].map(i=>`<div class="a-card"><h4>${g(L,'abt'+i+'.t')}</h4><p>${g(L,'abt'+i+'.p')}</p></div>`).join('');
+  // Services
+  document.getElementById('svc-lbl').textContent=g(L,'svc.lbl');
+  document.getElementById('svc-t').textContent=g(L,'svc.t');
+  document.getElementById('svc-p').textContent=g(L,'svc.p');
+  document.getElementById('svc-grid').innerHTML=[0,1,2,3,4,5].map(i=>`<div class="svc-card rv"><h3>${g(L,'svc'+i+'.t')}</h3><p>${g(L,'svc'+i+'.p')}</p><span class="svc-tag">${g(L,'svc'+i+'.tag')}</span></div>`).join('');
+  // Observation
+  document.getElementById('obs-lbl').textContent=g(L,'obs.lbl');
+  document.getElementById('obs-t').textContent=g(L,'obs.t');
+  document.getElementById('obs-p1').textContent=g(L,'obs.p1');
+  document.getElementById('obs-p2').textContent=g(L,'obs.p2');
+  document.getElementById('obs-n1').textContent=g(L,'obs.n1');
+  document.getElementById('obs-d1').textContent=g(L,'obs.d1');
+  document.getElementById('obs-n2').textContent=g(L,'obs.n2');
+  document.getElementById('obs-d2').textContent=g(L,'obs.d2');
+  document.getElementById('obs-link').textContent=g(L,'obs.link');
+  // Market Insight
+  document.getElementById('mi-lbl').textContent=g(L,'mi.lbl');
+  document.getElementById('mi-t').innerHTML=g(L,'mi.t').replace(/\n/g,'<br>');
+  document.getElementById('mi-desc').textContent=g(L,'mi.desc');
+  document.getElementById('mi-tabs').innerHTML=[0,1,2].map(i=>`<button class="mi-tab${i===0?' on':''}" onclick="switchMI(${i})">${g(L,'mi.tab'+i)}</button>`).join('');
+  document.getElementById('mi-panels').innerHTML=[0,1,2].map(i=>{
+    const pts=g(L,'mi'+i+'.pts').split('|').filter(p=>p.trim());
+    return `<div class="mi-panel${i===0?' on':''}" id="mip${i}"><h3>${g(L,'mi'+i+'.t')}</h3><p>${g(L,'mi'+i+'.p1')}</p><p>${g(L,'mi'+i+'.p2')}</p>${pts.length?`<div class="mi-points">${pts.map(p=>`<div class="mi-pt">${p.trim()}</div>`).join('')}</div>`:''}</div>`;
+  }).join('');
+  document.getElementById('mi-cta-t').textContent=g(L,'mi.cta.t');
+  document.getElementById('mi-cta-p').textContent=g(L,'mi.cta.p');
+  document.getElementById('mi-cta-b').textContent=g(L,'mi.cta.b');
+  // Network
+  document.getElementById('net-lbl').textContent=g(L,'net.lbl');
+  document.getElementById('net-t').textContent=g(L,'net.t');
+  document.getElementById('net-p').innerHTML=`<p>${g(L,'net.p')}</p>`;
+  document.getElementById('net-mets').innerHTML=[0,1,2].map(i=>`<div class="met-row"><span class="met-label">${g(L,'met'+i+'.l')}</span><span class="met-val">${g(L,'met'+i+'.v')}</span></div>`).join('');
+  document.getElementById('net-cards').innerHTML=[0,1,2,3].map(i=>`<div class="net-card"><div class="net-card-icon">${g(L,'nt'+i+'.i')}</div><h4>${g(L,'nt'+i+'.t')}</h4><p>${g(L,'nt'+i+'.p')}</p></div>`).join('');
+  // Partners
+  document.getElementById('par-lbl').textContent=g(L,'par.lbl');
+  const mq=document.getElementById('par-mq');
+  if(pLogos.length>0){
+    let ls=[...pLogos];while(ls.length<6)ls=ls.concat(pLogos);
+    const it=ls.map(img=>`<div class="par-item"><img src="${img}" alt="Partner"></div>`).join('');
+    const sp=Math.max(12,ls.length*4);
+    const tr=`<div class="par-track" style="animation-duration:${sp}s">${it}</div>`;
+    mq.innerHTML=tr+tr;
+    document.getElementById('partners').style.display='';
+    document.getElementById('div-par-pre').style.display='';
+    document.getElementById('div-par-post').style.display='';
+  }else{mq.innerHTML='';document.getElementById('partners').style.display='none';document.getElementById('div-par-pre').style.display='none';document.getElementById('div-par-post').style.display='none'}
+  document.getElementById('par-note').innerHTML=g(L,'par.note').replace(/\n/g,'<br>');
+  // Contact
+  document.getElementById('con-lbl').textContent=g(L,'con.lbl');
+  document.getElementById('con-h').innerHTML=g(L,'con.h').replace(/\n/g,'<br>');
+  document.getElementById('con-p').textContent=g(L,'con.p');
+  document.getElementById('con-loc').textContent=g(L,'con.loc');
+  document.getElementById('con-lang').textContent=g(L,'con.lang');
+  document.getElementById('con-fl').textContent=g(L,'con.fl');
+  document.getElementById('fl-co').textContent=g(L,'fl.co');
+  document.getElementById('fl-nm').textContent=g(L,'fl.nm');
+  document.getElementById('fl-tp').textContent=g(L,'fl.tp');
+  document.getElementById('fl-mg').textContent=g(L,'fl.mg');
+  document.getElementById('con-sel').innerHTML=[0,1,2,3,4,5].map(i=>`<option>${g(L,'sel'+i)}</option>`).join('');
+  document.getElementById('con-ta').placeholder=g(L,'con.ta');
+  document.getElementById('con-sub').textContent=g(L,'con.sub');
+  // Footer
+  document.getElementById('f-copy').textContent=g(L,'f.copy');
+  document.getElementById('f-links').innerHTML=`<li><a href="#about">${g(L,'fn.about')}</a></li><li><a href="#services">${g(L,'fn.svc')}</a></li><li><a href="#contact">${g(L,'fn.con')}</a></li>`;
+  document.body.className=L==='tc'?'tc':'';
+  document.documentElement.lang=L==='ko'?'ko':'zh-TW';
+  setTimeout(initRv,50);
+}
+
+function setLang(l){L=l;document.getElementById('btn-ko').classList.toggle('on',l==='ko');document.getElementById('btn-tc').classList.toggle('on',l==='tc');render()}
+function switchMI(n){document.querySelectorAll('.mi-tab').forEach((t,i)=>t.classList.toggle('on',i===n));document.querySelectorAll('.mi-panel').forEach((p,i)=>p.classList.toggle('on',i===n))}
+function showMI(){document.getElementById('mi-page').style.display='block';document.getElementById('mi-page').scrollIntoView({behavior:'smooth'})}
+
+// Admin
+const TABS=['基本','Hero','About','Services','Observation','Insight','Network','Partners','Contact'];
+let cTab=0;
+function openAdm(){document.getElementById('adm-overlay').classList.add('open');document.getElementById('adm-login').style.display='flex';document.getElementById('adm-editor').style.display='none';document.getElementById('adm-pw').value='';document.getElementById('adm-err').style.display='none'}
+function closeAdm(){document.getElementById('adm-overlay').classList.remove('open')}
+function admLogin(){if(document.getElementById('adm-pw').value===PW){document.getElementById('adm-login').style.display='none';document.getElementById('adm-editor').style.display='flex';document.getElementById('adm-tabs').innerHTML=TABS.map((t,i)=>`<button class="adm-tab${i===0?' on':''}" onclick="sTab(${i})">${t}</button>`).join('');sTab(0)}else{document.getElementById('adm-err').style.display='block'}}
+function sTab(i){cTab=i;document.querySelectorAll('.adm-tab').forEach((t,j)=>t.classList.toggle('on',j===i));rTab(i)}
+function fld(label,key,ml){const t=ml?'textarea':'input type="text"',c=ml?'textarea':'input';return `<div class="af-group">${label}</div><div class="af-row"><div class="af-field"><label>🇰🇷 KO</label><${t} class="af" data-lang="ko" data-key="${key}">${ml?g('ko',key):''}</${c}></div><div class="af-field"><label>🇹🇼 TC</label><${t} class="af" data-lang="tc" data-key="${key}">${ml?g('tc',key):''}</${c}></div></div>`}
+
+function rTab(idx){
+  const b=document.getElementById('adm-body');
+  const S=[
+    ()=>`<div class="af-group">Logo</div><div class="af-field"><label>上傳 Logo</label><div class="logo-area"><div class="logo-pv">${logo?`<img src="${logo}">`:'<span style="font-size:9px;color:var(--t3)">無</span>'}</div><button class="up-btn" onclick="document.getElementById('logo-fi').click()">上傳</button><button class="rm-btn" onclick="logo=null;save();render();rTab(0)">移除</button></div></div>
+    <div class="af-group">統計數字</div>
+    <div class="af-row"><div class="af-field"><label>數字 1</label><input type="text" class="af" data-lang="ko" data-key="stat0.n"></div><div class="af-field"><label>數字 2</label><input type="text" class="af" data-lang="ko" data-key="stat1.n"></div></div>
+    <div class="af-row"><div class="af-field"><label>說明 1 — KO</label><input type="text" class="af" data-lang="ko" data-key="stat0.l"></div><div class="af-field"><label>說明 1 — TC</label><input type="text" class="af" data-lang="tc" data-key="stat0.l"></div></div>
+    <div class="af-row"><div class="af-field"><label>說明 2 — KO</label><input type="text" class="af" data-lang="ko" data-key="stat1.l"></div><div class="af-field"><label>說明 2 — TC</label><input type="text" class="af" data-lang="tc" data-key="stat1.l"></div></div>`,
+    ()=>`${fld('Tag','hero.tag')}${fld('標題','hero.h',1)}${fld('副標','hero.p',1)}${fld('按鈕 1','hero.b1')}${fld('按鈕 2','hero.b2')}`,
+    ()=>`${fld('Label','abt.lbl')}${fld('標題','abt.t',1)}${fld('段落 1','abt.p1',1)}${fld('段落 2','abt.p2',1)}${fld('引言','abt.q',1)}${[0,1,2].map(i=>`${fld('能力 '+(i+1)+' 標題','abt'+i+'.t')}${fld('能力 '+(i+1)+' 說明','abt'+i+'.p',1)}`).join('')}`,
+    ()=>`${fld('Label','svc.lbl')}${fld('標題','svc.t')}${fld('說明','svc.p',1)}${[0,1,2,3,4,5].map(i=>`<div class="af-group">服務 ${i+1}</div><div class="af-row"><div class="af-field"><label>標題 KO</label><input type="text" class="af" data-lang="ko" data-key="svc${i}.t"></div><div class="af-field"><label>標題 TC</label><input type="text" class="af" data-lang="tc" data-key="svc${i}.t"></div></div><div class="af-row"><div class="af-field"><label>說明 KO</label><textarea class="af" data-lang="ko" data-key="svc${i}.p"></textarea></div><div class="af-field"><label>說明 TC</label><textarea class="af" data-lang="tc" data-key="svc${i}.p"></textarea></div></div><div class="af-row"><div class="af-field"><label>Tag</label><input type="text" class="af" data-lang="ko" data-key="svc${i}.tag"></div><div class="af-field"><label>Tag TC</label><input type="text" class="af" data-lang="tc" data-key="svc${i}.tag"></div></div>`).join('')}`,
+    ()=>`${fld('Label','obs.lbl')}${fld('標題','obs.t')}${fld('段落 1','obs.p1',1)}${fld('段落 2','obs.p2',1)}<div class="af-group">數字</div><div class="af-row"><div class="af-field"><label>數字 1</label><input type="text" class="af" data-lang="ko" data-key="obs.n1"></div><div class="af-field"><label>數字 2</label><input type="text" class="af" data-lang="ko" data-key="obs.n2"></div></div>${fld('數字 1 說明','obs.d1',1)}${fld('數字 2 說明','obs.d2',1)}${fld('連結文字','obs.link')}`,
+    ()=>`${fld('Label','mi.lbl')}${fld('標題','mi.t',1)}${fld('說明','mi.desc',1)}${[0,1,2].map(i=>`${fld('Tab '+(i+1)+' 名稱','mi.tab'+i)}<div class="af-group">內容 ${i+1}</div><div class="af-row"><div class="af-field"><label>標題 KO</label><input type="text" class="af" data-lang="ko" data-key="mi${i}.t"></div><div class="af-field"><label>標題 TC</label><input type="text" class="af" data-lang="tc" data-key="mi${i}.t"></div></div><div class="af-row"><div class="af-field"><label>段落 1 KO</label><textarea class="af" data-lang="ko" data-key="mi${i}.p1"></textarea></div><div class="af-field"><label>段落 1 TC</label><textarea class="af" data-lang="tc" data-key="mi${i}.p1"></textarea></div></div><div class="af-row"><div class="af-field"><label>段落 2 KO</label><textarea class="af" data-lang="ko" data-key="mi${i}.p2"></textarea></div><div class="af-field"><label>段落 2 TC</label><textarea class="af" data-lang="tc" data-key="mi${i}.p2"></textarea></div></div><div class="af-row"><div class="af-field"><label>重點 (|分隔) KO</label><textarea class="af" data-lang="ko" data-key="mi${i}.pts"></textarea></div><div class="af-field"><label>重點 (|分隔) TC</label><textarea class="af" data-lang="tc" data-key="mi${i}.pts"></textarea></div></div>`).join('')}${fld('CTA 標題','mi.cta.t')}${fld('CTA 說明','mi.cta.p',1)}${fld('CTA 按鈕','mi.cta.b')}`,
+    ()=>`${fld('Label','net.lbl')}${fld('標題','net.t')}${fld('說明','net.p',1)}${[0,1,2].map(i=>`<div class="af-group">指標 ${i+1}</div><div class="af-row"><div class="af-field"><label>標籤 KO</label><input type="text" class="af" data-lang="ko" data-key="met${i}.l"></div><div class="af-field"><label>標籤 TC</label><input type="text" class="af" data-lang="tc" data-key="met${i}.l"></div></div><div class="af-field"><label>數值</label><input type="text" class="af" data-lang="ko" data-key="met${i}.v"></div>`).join('')}${[0,1,2,3].map(i=>`<div class="af-group">類型 ${i+1}</div><div class="af-field"><label>Icon</label><input type="text" class="af" data-lang="ko" data-key="nt${i}.i" style="width:60px"></div><div class="af-row"><div class="af-field"><label>標題 KO</label><input type="text" class="af" data-lang="ko" data-key="nt${i}.t"></div><div class="af-field"><label>標題 TC</label><input type="text" class="af" data-lang="tc" data-key="nt${i}.t"></div></div><div class="af-row"><div class="af-field"><label>說明 KO</label><textarea class="af" data-lang="ko" data-key="nt${i}.p"></textarea></div><div class="af-field"><label>說明 TC</label><textarea class="af" data-lang="tc" data-key="nt${i}.p"></textarea></div></div>`).join('')}`,
+    ()=>`<div class="af-group">合作夥伴 Logo</div><p style="font-family:var(--ui);font-size:11px;color:var(--t3);margin-bottom:10px">上傳幾個就顯示幾個，前台跑馬燈呈現。</p>${pLogos.length?`<div class="par-up-grid">${pLogos.map((img,i)=>`<div class="par-up-cell"><div class="pv"><img src="${img}"></div><button class="pu-rm" onclick="rmPar(${i})">移除</button></div>`).join('')}</div>`:'<p style="font-size:11px;color:var(--t3);margin:12px 0">尚未上傳</p>'}<button class="up-btn" onclick="document.getElementById('par-fi').click()" style="margin-top:10px">＋ 新增 Logo</button>${fld('備註','par.note',1)}`,
+    ()=>`${fld('Label','con.lbl')}${fld('標題','con.h',1)}${fld('說明','con.p',1)}${fld('地點','con.loc')}${fld('語言','con.lang')}${fld('版權','f.copy')}`
+  ];
+  b.innerHTML=S[idx]();
+  b.querySelectorAll('.af').forEach(el=>{const v=g(el.dataset.lang,el.dataset.key);if(el.tagName==='TEXTAREA'){if(!el.textContent.trim())el.value=v}else el.value=v});
+}
+
+function saveAdm(){
+  if(!cms.ko)cms.ko={};if(!cms.tc)cms.tc={};
+  document.querySelectorAll('.af').forEach(el=>{
+    const l=el.dataset.lang,k=el.dataset.key;if(!cms[l])cms[l]={};cms[l][k]=el.value;
+    if(k.match(/^(stat[01]\.n|obs\.n[12]|met[012]\.v|nt[0-3]\.i)$/)){cms.tc[k]=el.value;cms.ko[k]=el.value}
+  });
+  save();render();
+  const m=document.getElementById('adm-ok');m.style.display='block';setTimeout(()=>m.style.display='none',2e3);
+}
+function resetAdm(){if(!confirm('確定重置？'))return;cms={};logo=null;pLogos=[];localStorage.removeItem('vm');render();sTab(cTab)}
+function rmPar(i){pLogos.splice(i,1);save();rTab(7);render()}
+
+document.getElementById('logo-fi').addEventListener('change',function(){const f=this.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{logo=e.target.result;save();render();rTab(0)};r.readAsDataURL(f);this.value=''});
+document.getElementById('par-fi').addEventListener('change',function(){const f=this.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{pLogos.push(e.target.result);save();rTab(7);render()};r.readAsDataURL(f);this.value=''});
+
+function initRv(){const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.rv').forEach(el=>{el.classList.remove('v');o.observe(el)})}
+
+// Admin access
+function chkAdm(){if(location.hash==='#admin'||location.pathname==='/admin'){setTimeout(openAdm,100);history.replaceState(null,'',location.pathname==='/admin'?'/':location.pathname)}}
+window.addEventListener('hashchange',chkAdm);
+document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();openAdm()}});
+document.getElementById('adm-overlay').addEventListener('click',function(e){if(e.target===this)closeAdm()});
+
+load();render();chkAdm();
+</script>
+</body>
+</html>
