@@ -458,6 +458,12 @@ const auth=firebase.auth();
 const db=firebase.firestore();
 const ADMIN_EMAIL='vastmedia@vastme.net';
 const CONTENT_VERSION='2026-06-website-polish';
+const CMS_TEXT_OVERRIDE_ENABLED=false;
+// Keep this false for production. Frontend copy must come from DEFAULT_CONTENT to prevent stale Firestore CMS text from overriding verified site copy.
+const CMS_COPY_NOTICE={
+  tc:'目前前台文案由網站 DEFAULT_CONTENT 管理，CMS 僅管理 Logo 與合作夥伴圖片。若需修改前台文案，請透過 GitHub 修改 DEFAULT_CONTENT 並重新部署。',
+  ko:'현재 프론트엔드 문구는 사이트의 DEFAULT_CONTENT에서 관리되며, CMS는 로고 및 파트너 로고 이미지 관리 용도로만 사용됩니다. 문구 수정이 필요한 경우 GitHub에서 DEFAULT_CONTENT를 수정한 뒤 다시 배포해 주세요.'
+};
 const D={ko:{
 'nav.about':'회사 소개','nav.svc':'서비스','nav.obs':'강점','nav.net':'경험 유형','nav.con':'문의','nav.cta':'문의하기',
 'hero.tag':'Taiwan · Hong Kong · Macau',
@@ -582,7 +588,7 @@ async function load(){
       cmsContentVersion=d.cv||null;
       logo=d.l||null;
       pLogos=(d.p||[]).filter(x=>x);
-      cms={};
+      cms=CMS_TEXT_OVERRIDE_ENABLED&&d.cv===CONTENT_VERSION?(d.i||{}):{};
       fbLoaded=true;
       if(d.cv!==CONTENT_VERSION)console.log('CMS content version mismatch, using current defaults');
     }else{
@@ -594,14 +600,16 @@ async function load(){
 // Save to Firestore
 async function save(){
   try{
-    await db.collection('config').doc('cms').set({i:cms,l:logo,p:pLogos,cv:CONTENT_VERSION});
+    const data={l:logo,p:pLogos,cv:CONTENT_VERSION};
+    if(CMS_TEXT_OVERRIDE_ENABLED)data.i=cms;
+    await db.collection('config').doc('cms').set(data);
     cmsContentVersion=CONTENT_VERSION;
   }catch(e){
     console.error('Save failed:',e);
     const m=document.getElementById('adm-err');if(m){m.textContent='儲存失敗，請確認權限';m.style.display='block';setTimeout(()=>m.style.display='none',3e3)}
   }
 }
-function g(l,k){return D[l][k]||''}
+function g(l,k){return CMS_TEXT_OVERRIDE_ENABLED&&cms[l]&&cms[l][k]!==undefined?cms[l][k]:D[l][k]||''}
 
 function render(){
   const li=document.getElementById('logo-img'),lt=document.getElementById('logo-text');
@@ -725,9 +733,8 @@ function openAdm(){document.getElementById('adm-overlay').classList.add('open');
 function closeAdm(){document.getElementById('adm-overlay').classList.remove('open')}
 function updateAdmVersion(){
   const el=document.getElementById('adm-version');if(!el)return;
-  const synced=cmsContentVersion===CONTENT_VERSION;
-  el.classList.toggle('ok',synced);
-  el.textContent=synced?'CMS 內容已同步至目前版本。':'目前線上前台正在使用新版預設文案，Firestore CMS 內容版本較舊，請重置或儲存新版內容以完成同步。';
+  el.classList.add('ok');
+  el.textContent=CMS_COPY_NOTICE[L]||CMS_COPY_NOTICE.ko;
 }
 function enterEditor(){document.getElementById('adm-login').style.display='none';document.getElementById('adm-editor').style.display='flex';updateAdmVersion();document.getElementById('adm-tabs').innerHTML=TABS.map((t,i)=>`<button class="adm-tab${i===0?' on':''}" onclick="sTab(${i})">${t}</button>`).join('');sTab(0)}
 async function googleLogin(){
@@ -765,7 +772,7 @@ async function saveAdm(){
   document.querySelectorAll('.af').forEach(el=>{const l=el.dataset.lang,k=el.dataset.key;if(!cms[l])cms[l]={};cms[l][k]=el.value;if(k.match(/^(nt[0-3]\.i)$/)){cms.tc[k]=el.value;cms.ko[k]=el.value}});
   await save();render();updateAdmVersion();const m=document.getElementById('adm-ok');m.style.display='block';setTimeout(()=>m.style.display='none',2e3);
 }
-async function resetAdm(){if(!confirm('確定重置？'))return;cms={};logo=null;pLogos=[];await db.collection('config').doc('cms').set({i:{},l:null,p:[],cv:CONTENT_VERSION});cmsContentVersion=CONTENT_VERSION;render();updateAdmVersion();sTab(cTab)}
+async function resetAdm(){if(!confirm('確定重置？'))return;cms={};logo=null;pLogos=[];await db.collection('config').doc('cms').set({l:null,p:[],cv:CONTENT_VERSION});cmsContentVersion=CONTENT_VERSION;render();updateAdmVersion();sTab(cTab)}
 async function rmPar(i){pLogos.splice(i,1);await save();rTab(8);render()}
 
 document.getElementById('logo-fi').addEventListener('change',function(){const f=this.files[0];if(!f)return;const r=new FileReader();r.onload=async e=>{logo=e.target.result;await save();render();rTab(0)};r.readAsDataURL(f);this.value=''});
